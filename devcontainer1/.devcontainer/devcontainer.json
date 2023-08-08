@@ -10,7 +10,7 @@
 	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers/features/powershell:1": {
-			"version": "latest"
+			"version": "7.4.0-preview.4"
 		},
 		"./powershell-resources": {
 			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
