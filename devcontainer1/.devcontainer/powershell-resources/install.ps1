@@ -6,7 +6,7 @@ Write-Host -Object "Ensuring PowerShellGet >=2.2.5 is installed..."
 $PowerShellGetMetadata = Get-Module -Name PowerShellGet -ListAvailable
 if (($PowerShellGetMetadata.Version -lt "2.2.5") -or !$PowerShellGetMetadata.Version) {
     Write-Host -Object "Updating PowerShellGet to 2.2.5..."
-    Install-Module -Name PowerShellGet -Force -AllowClobber -Scope AllUsers -Verbose
+    Install-Module -Name PowerShellGet -Force -AllowClobber -Verbose
 } else {
     Write-Host -Object "PowerShellGet is up-to-date."
 }
@@ -27,12 +27,12 @@ $PSResourceGetMetadata = Get-Module -Name Microsoft.PowerShell.PSResourceGet -Li
 Write-Host "Ending Test"
 if (!$PSResourceGetMetadata) {
     Write-Host -Object "'Microsoft.PowerShell.PSResourceGet' is not installed, now installing..."
-    Install-Module -Name "Microsoft.PowerShell.PSResourceGet" -RequiredVersion $PsrgPinnedVer -Force -AllowPrerelease -Scope AllUsers -Verbose
+    Install-Module -Name "Microsoft.PowerShell.PSResourceGet" -RequiredVersion $PsrgPinnedVer -Force -AllowPrerelease -Verbose
 } elseif ($PSResourceGetMetadata.Version -gt $PsrgPinnedVerShort) {
     Write-Warning -Message "'Microsoft.PowerShell.PSResourceGet' is higher than the pinned version of '$PsrgPinnedVer'. This may cause unexpected results. Consider opening a GitHub issue at 'https://github.com/natescherer/devcontainers-custom-features/issues' regarding this."
 } elseif ($PSResourceGetMetadata.Version -lt $PsrgPinnedVerShort) {
     Write-Host "'Microsoft.PowerShell.PSResourceGet' is less than the pinned version of '$PsrgPinnedVer'. Now updating..."
-    Install-Module -Name "Microsoft.PowerShell.PSResourceGet" -RequiredVersion $PsrgPinnedVer -Force -AllowPrerelease -Scope AllUsers -Verbose
+    Install-Module -Name "Microsoft.PowerShell.PSResourceGet" -RequiredVersion $PsrgPinnedVer -Force -AllowPrerelease -Verbose
 } elseif ($PSResourceGetMetadata.Version -eq $PsrgPinnedVerShort) {
     Write-Host "'Microsoft.PowerShell.PSResourceGet' is already at pinned version of '$PsrgPinnedVer'."
 } else {
@@ -42,14 +42,14 @@ if (!$PSResourceGetMetadata) {
 Write-Host -Object "Installing Resource(s)..."
 if ($env:RESOURCES) {
     $Resource = $env:RESOURCES.split(",")
-    Install-PSResource -Name $Resource -AcceptLicense -TrustRepository -Scope AllUsers -Verbose
+    Install-PSResource -Name $Resource -AcceptLicense -TrustRepository -Verbose
 }
 
 if ($env:REQUIREDRESOURCEJSONBASE64) {
     $ResourceJson = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($env:REQUIREDRESOURCEJSONBASE64))
-    Install-PSResource -RequiredResource $ResourceJson -AcceptLicense -TrustRepository -Scope AllUsers -Verbose
+    Install-PSResource -RequiredResource $ResourceJson -AcceptLicense -TrustRepository -Verbose
 }
 
 if ($env:REQUIREDRESOURCEJSONFILE) {
-    Install-PSResource -RequiredResourceFile $env:REQUIREDRESOURCEJSONFILE -AcceptLicense -TrustRepository -Scope AllUsers -Verbose
+    Install-PSResource -RequiredResourceFile $env:REQUIREDRESOURCEJSONFILE -AcceptLicense -TrustRepository -Verbose
 }

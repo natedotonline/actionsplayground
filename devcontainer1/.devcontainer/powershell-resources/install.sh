@@ -28,4 +28,6 @@ if [ -z "$RESOURCES" ] && [ -z "$REQUIREDRESOURCEJSONBASE64" ] && [ -z "$REQUIRE
     exit 1
 fi
 
-pwsh -f install.ps1
+su - "$_REMOTE_USER" <<EOF
+    pwsh -f install.ps1
+EOF
