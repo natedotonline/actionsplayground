@@ -27,5 +27,5 @@ jobs:
         with:
           subFolder: devcontainer1
           imageName: ghcr.io/natescherer/sre-devcontainer
-          platform: linux/amd64,linux/arm64
+          platform: linux/arm64
           # runCmd: python /opt/sredevcontainer/get_tool_versions.py
