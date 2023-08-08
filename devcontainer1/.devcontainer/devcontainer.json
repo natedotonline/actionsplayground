@@ -1,0 +1,19 @@
+{
+	"name": "SRE",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".",
+		"args": {
+			"NONROOT_USER": "vscode"
+		}
+	},
+	"remoteUser": "vscode",
+	"features": {
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
+		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
+			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
+		}
+	}
+}
